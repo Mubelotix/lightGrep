@@ -101,18 +101,20 @@ Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
 
 {Set<Lettre> res=null; Lettre l1=null; Lettre l2=null;}
 {
-    l1=lettre() <TIRET> l2=lettre()
-    {
-        res = Lettre.toutesLesLettresComprisesEntre(l1, l2);
-    }
-
-    l1=lettre()
-    {
-        res = new HashSet<Lettre>();
-        res.add(l1);
-    }
-
-    {return res;}
+    l1 = lettre()
+    (
+        "-" l2 = lettre()
+        {
+            res = Lettre.toutesLesLettresComprisesEntre(l1, l2);
+            return res;
+        }
+        |
+        {
+            res = new HashSet<>();
+            res.add(l1);
+            return res;
+        }
+    )
 }
 
 // @u:end elementsEnsembleDeLettres
