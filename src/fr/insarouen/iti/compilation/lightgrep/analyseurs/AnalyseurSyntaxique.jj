@@ -99,7 +99,20 @@ Set<Lettre> ensembleDeLettres() throws LettreException :
 Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
 // @u:start elementsEnsembleDeLettres
 
-{Set<Lettre> res=null;}{{return res;}}
+{Set<Lettre> res=null; Lettre l=null;}
+{
+    //l=lettre()
+	//{
+    //    res.add(l);
+	//}
+    (   
+        l=lettre()
+        {
+            res.add(l);
+        }
+    )+
+    {return res;}
+}
 
 // @u:end elementsEnsembleDeLettres
 
