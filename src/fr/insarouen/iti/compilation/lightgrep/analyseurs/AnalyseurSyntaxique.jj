@@ -99,18 +99,19 @@ Set<Lettre> ensembleDeLettres() throws LettreException :
 Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
 // @u:start elementsEnsembleDeLettres
 
-{Set<Lettre> res=null; Lettre l=null;}
+{Set<Lettre> res=null; Lettre l1=null; Lettre l2=null;}
 {
-    //l=lettre()
-	//{
-    //    res.add(l);
-	//}
-    (   
-        l=lettre()
-        {
-            res.add(l);
-        }
-    )+
+    l1=lettre() <TIRET> l2=lettre()
+    {
+        res = Lettre.toutesLesLettresComprisesEntre(l1, l2);
+    }
+
+    l1=lettre()
+    {
+        res = new HashSet<Lettre>();
+        res.add(l1);
+    }
+
     {return res;}
 }
 
@@ -122,6 +123,7 @@ Lettre lettre() :
 {Token t;} {
     t = <CARACTERE>
     { return new Lettre(t.image.charAt(0)); }
+    |
     t = <CARACTERE_ECHAPE>
     { return new Lettre(t.image.charAt(1)); }
 }
