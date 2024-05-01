@@ -92,7 +92,13 @@ ExpressionRationnelle expressionRationnelleElementaire() throws LettreException 
 Set<Lettre> ensembleDeLettres() throws LettreException :
 // @u:start ensembleDeLettres
 
-{Set<Lettre> res=null;}{{return res;}}
+{Set<Lettre> res=new HashSet<>(); Set<Lettre> inner=null;}
+{
+    (inner=elementsEnsembleDeLettres()
+        {res.addAll(inner);}
+    )*
+    {return res;}
+}
 
 // @u:end ensembleDeLettres
 
