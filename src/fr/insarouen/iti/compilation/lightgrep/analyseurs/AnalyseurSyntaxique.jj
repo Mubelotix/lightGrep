@@ -78,7 +78,18 @@ ExpressionRationnelle expressionsRationnellesConcatenees()  throws LettreExcepti
 ExpressionRationnelle expressionRationnelleBasique() throws LettreException :
 // @u:start expressionRationnelleBasique
 
-{ExpressionRationnelle res=null;}{{return res;}}
+{ExpressionRationnelle res=null;}
+{
+    res = expressionRationnelleElementaire()
+    (
+        <ZERO_N> { res = new ZeroAN(res); }
+        |
+        <ZERO_UN> { res = new ZeroOuUn(res); }
+        |
+        <UN_N> { res = new UnAN(res); }
+    )
+    {return res;}
+}
 
 // @u:end expressionRationnelleBasique
 
