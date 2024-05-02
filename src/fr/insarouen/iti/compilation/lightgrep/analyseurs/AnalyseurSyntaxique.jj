@@ -85,7 +85,27 @@ ExpressionRationnelle expressionRationnelleBasique() throws LettreException :
 ExpressionRationnelle expressionRationnelleElementaire() throws LettreException :
 // @u:start expressionRationnelleElementaire
 
-{ExpressionRationnelle res=null;}{{return res;}}
+{ExpressionRationnelle res=null; Lettre l=null; Set<Lettre> ensemble=null;}
+{
+    <PARAG> res = expressionRationnelle() <PARAD>
+    |
+    l = lettre()
+    {
+        res = new ExpressionRationnelleElementaire(l);
+    }
+    |
+    <JOKER>
+    {
+        res = new ExpressionRationnelleElementaire(Lettre.toutesLesLettresPossibles());
+    }
+    <CROCHETG>
+    (
+        ensemble = ensembleDeLettres() <CROCHETD> { res = new ExpressionRationnelleElementaire(ensemble); }
+        |
+        <CIRCONFLEXE> ensemble = ensembleDeLettres() <CROCHETD> { res = new ExpressionRationnelleElementaire(Lettre.lettresComplementaires(ensemble)); }
+    )
+    {return res;}
+}
 
 // @u:end expressionRationnelleElementaire
 
