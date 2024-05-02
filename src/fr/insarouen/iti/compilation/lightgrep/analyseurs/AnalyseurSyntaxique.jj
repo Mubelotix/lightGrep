@@ -71,7 +71,13 @@ ExpressionRationnelle expressionRationnelle() throws LettreException :
 ExpressionRationnelle expressionsRationnellesConcatenees()  throws LettreException :
 // @u:start expressionRationnellesConcatenees
 
-{ExpressionRationnelle res=null;}{{return res;}}
+{ExpressionRationnelle inner=null; List<ExpressionRationnelle> list=new ArrayList<>();}
+{
+    (inner=expressionRationnelleBasique()
+        {list.add(inner);}
+    )+
+    {return new Concatenation(list);}
+}
 
 // @u:end expressionRationnellesConcatenees
 
