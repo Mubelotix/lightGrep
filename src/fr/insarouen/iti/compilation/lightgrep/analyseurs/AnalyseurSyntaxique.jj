@@ -74,9 +74,8 @@ ExpressionRationnelle expressionRationnelle() throws LettreException :
             list.add(right);
             return new Union(list);
         }
-        |
-        {return left;}
     )
+    {return left;}
 }
 
 // @u:end expressionRationnelle
@@ -101,13 +100,14 @@ ExpressionRationnelle expressionRationnelleBasique() throws LettreException :
 {
     res = expressionRationnelleElementaire()
     (
-        <ZERO_N> { res = new ZeroAN(res); }
+        <ZERO_N> { res = new ZeroAN(res); return res; }
         |
-        <ZERO_UN> { res = new ZeroOuUn(res); }
+        <ZERO_UN> { res = new ZeroOuUn(res); return res; }
         |
-        <UN_N> { res = new UnAN(res); }
+        <UN_N> { res = new UnAN(res); return res; }
+        |
+        { return res; }
     )
-    {return res;}
 }
 
 // @u:end expressionRationnelleBasique
@@ -118,23 +118,36 @@ ExpressionRationnelle expressionRationnelleElementaire() throws LettreException 
 {ExpressionRationnelle res=null; Lettre l=null; Set<Lettre> ensemble=null;}
 {
     <PARAG> res = expressionRationnelle() <PARAD>
+    {
+        return res;
+    }
     |
     l = lettre()
     {
         res = new ExpressionRationnelleElementaire(l);
+        return res;
     }
     |
     <JOKER>
     {
         res = new ExpressionRationnelleElementaire(Lettre.toutesLesLettresPossibles());
+        return res;
     }
+    |
     <CROCHETG>
     (
-        ensemble = ensembleDeLettres() <CROCHETD> { res = new ExpressionRationnelleElementaire(ensemble); }
+        ensemble = ensembleDeLettres() <CROCHETD>
+        {
+            res = new ExpressionRationnelleElementaire(ensemble);
+            return res;
+        }
         |
-        <CIRCONFLEXE> ensemble = ensembleDeLettres() <CROCHETD> { res = new ExpressionRationnelleElementaire(Lettre.lettresComplementaires(ensemble)); }
+        <CIRCONFLEXE> ensemble = ensembleDeLettres() <CROCHETD>
+        {
+            res = new ExpressionRationnelleElementaire(Lettre.lettresComplementaires(ensemble));
+            return res;
+        }
     )
-    {return res;}
 }
 
 // @u:end expressionRationnelleElementaire
@@ -146,7 +159,7 @@ Set<Lettre> ensembleDeLettres() throws LettreException :
 {
     (inner=elementsEnsembleDeLettres()
         {res.addAll(inner);}
-    )*
+    )+
     {return res;}
 }
 
@@ -164,13 +177,12 @@ Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
             res = Lettre.toutesLesLettresComprisesEntre(l1, l2);
             return res;
         }
-        |
-        {
-            res = new HashSet<>();
-            res.add(l1);
-            return res;
-        }
     )
+    {
+        res = new HashSet<>();
+        res.add(l1);
+        return res;
+    }
 }
 
 // @u:end elementsEnsembleDeLettres
@@ -178,12 +190,12 @@ Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
 Lettre lettre() :
 // @u:start lettre
 
-{Token t;} {
+{Lettre l=null; Token t;} {
     t = <CARACTERE>
-    { return new Lettre(t.image.charAt(0)); }
+    { l = new Lettre(t.image.charAt(0)); return l; }
     |
     t = <CARACTERE_ECHAPE>
-    { return new Lettre(t.image.charAt(1)); }
+    { l = new Lettre(t.image.charAt(1)); return l; }
 }
 
 // @u:end lettre
