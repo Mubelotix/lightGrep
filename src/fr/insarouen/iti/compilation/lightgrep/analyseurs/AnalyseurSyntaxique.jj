@@ -173,7 +173,7 @@ Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
 {
     l1 = lettre()
     (
-        "-" l2 = lettre()
+        <TIRET> l2 = lettre()
         {
             res = Lettre.toutesLesLettresComprisesEntre(l1, l2);
             return res;
