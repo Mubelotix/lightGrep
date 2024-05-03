@@ -64,18 +64,19 @@ TOKEN : {
 ExpressionRationnelle expressionRationnelle() throws LettreException :
 // @u:start expressionRationnelle
 
-{ExpressionRationnelle left=null; ExpressionRationnelle right=null; Set<ExpressionRationnelle> list=new HashSet<>();}
+{ExpressionRationnelle inner = null; Set<ExpressionRationnelle> list=new HashSet<>();}
 {
-    left=expressionsRationnellesConcatenees()
+    inner=expressionsRationnellesConcatenees()
+    {
+        list.add(inner);
+    }
     (
-        <OU> right=expressionRationnelle()
+        <OU> inner=expressionsRationnellesConcatenees()
         {
-            list.add(left);
-            list.add(right);
-            return new Union(list);
+            list.add(inner);
         }
-    )
-    {return left;}
+    )*
+    {return new Union(list);}
 }
 
 // @u:end expressionRationnelle
