@@ -169,7 +169,7 @@ Set<Lettre> ensembleDeLettres() throws LettreException :
 Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
 // @u:start elementsEnsembleDeLettres
 
-{Set<Lettre> res=null; Lettre l1=null; Lettre l2=null;}
+{Set<Lettre> res=new HashSet<>(); Lettre l1=null; Lettre l2=null;}
 {
     l1 = lettre()
     (
@@ -178,9 +178,8 @@ Set<Lettre> elementsEnsembleDeLettres() throws LettreException :
             res = Lettre.toutesLesLettresComprisesEntre(l1, l2);
             return res;
         }
-    )
+    )?
     {
-        res = new HashSet<>();
         res.add(l1);
         return res;
     }
