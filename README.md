@@ -4,7 +4,7 @@ This project was made by my teacher N. Delestre and completed by me. It is a sim
 
 ## Rewriting in Rust
 
-I have found javacc unsatisfactory for this task. Thus, I have decided to [rewrite it in Rust](https://github.com/Mubelotix/faster-pest/blob/master/faster-pest/examples/lightgrep/main.rs) using [Pest](https://pest.rs/) through my highly overoptimized [faster-pest](https://github.com/Mubelotix/faster-pest) crate fork.
+I have found javacc unsatisfactory for this task. Thus, I have decided to [rewrite it in Rust](https://github.com/Mubelotix/faster-pest/blob/master/faster-pest/examples/lightgrep/main.rs) using [Pest](https://pest.rs/) through my highly overoptimized [faster-pest](https://github.com/Mubelotix/faster-pest) crate. I have been working on this Pest alternative implementation after being unsatisfied with the performance of the original Pest crate, and have managed to make it 7 times faster.
 
 ### User-friendliness
 
