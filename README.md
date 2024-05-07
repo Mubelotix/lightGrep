@@ -29,7 +29,7 @@ test lightgrep_as_is   ... bench:         697 ns/iter (+/- 36)
 test lightgrep_to_rust ... bench:       2,383 ns/iter (+/- 273)
 ```
 
-The java version runs 53223 iterations per second, while the Rust version runs 419639 iterations per second. Faster-Pest is 788% faster than JavaCC.
+The java version runs 53223 iterations per second, while the Rust version runs 419639 iterations per second. **Faster-Pest is 788% faster than JavaCC**.
 
 ### Further improvements
 
