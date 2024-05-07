@@ -33,4 +33,4 @@ The java version runs 1899 iterations per second, while the Rust version runs 41
 
 ### Conclusion
 
-This example once again shows the superiority of Rust and its ecosystem. JavaCC is no longer a relevant choice for most parsing tasks in 2024.
+This example once again shows the superiority of Rust and its ecosystem.
