@@ -39,4 +39,4 @@ I could have used faster collections types like `hashbrown` and `smallvec` rathe
 
 This example once again shows the superiority of Rust and its ecosystem.
 
-*See also: [Rust vs Rust: performance comparison of different Rust libraries on JSON parsing](https://github.com/Mubelotix/pestvsnom)
+*See also: [Rust vs Rust: performance comparison of different blazing fast crates on JSON parsing](https://github.com/Mubelotix/pestvsnom)*
