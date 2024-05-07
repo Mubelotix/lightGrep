@@ -31,7 +31,7 @@ test lightgrep_to_rust ... bench:       2,383 ns/iter (+/- 273)
 
 The first benchmark only accounts for tokenization and parsing. The second benchmark also includes instantiating the `ExpressionRationnelle` struct. In order to have a fair comparison with JavaCC, I am going to consider the results of the second benchmark.
 
-The java version runs 53223 iterations per second, while the Rust version runs 419639 iterations per second. **Faster-Pest is 788% faster than JavaCC**.
+The java version runs 53223 iterations per second, while the Rust version runs at 419639 iterations per second. **Faster-Pest is 788% faster than JavaCC**.
 
 ### Further improvements
 
