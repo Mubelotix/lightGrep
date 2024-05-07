@@ -1,7 +1,9 @@
 SRC=src
 TEST=test
+BENCH=bench
 CLASSES_DEST=build/classes
 TESTS_DEST=build/test/classes
+BENCHS_DEST=build/bench/classes
 LIB=lib
 
 PACKAGE_RACINE=fr/insarouen/iti/compilation/lightgrep
@@ -11,13 +13,15 @@ PACKAGE_AST=$(PACKAGE_RACINE)/arbreSyntaxiqueAbstrait
 PACKAGE_ANALYSEURS=$(PACKAGE_RACINE)/analyseurs
 PACKAGE_EXP=$(PACKAGE_RACINE)/expressionRationnelle
 
-all: javacc javac testsunitaires
+all: javacc javac testsunitaires benchmarks
 
 javacc: $(SRC)/$(PACKAGE_ANALYSEURS)/AnalyseurSyntaxique.java
 
 javac: analyseurs ast automate compilateur expressionRationnelle main
 
 testsunitaires: $(TESTS_DEST)/TestExpressionRationnelle.class
+
+benchmarks: $(BENCHS_DEST)/BenchExpressionRationnelle.class $(BENCHS_DEST)/BenchRunner.class
 
 main: $(CLASSES_DEST)/$(PACKAGE_RACINE)/Main.class
 
@@ -39,6 +43,9 @@ $(CLASSES_DEST)/%.class: $(SRC)/%.java
 
 $(TESTS_DEST)/%.class: $(TEST)/%.java
 	javac -d $(TESTS_DEST) -cp $(CLASSES_DEST):$(LIB)/junit4.jar:$(LIB)/hamcrest-all.jar -sourcepath src $<
+
+$(BENCHS_DEST)/%.class: $(BENCH)/%.java
+	javac -d $(BENCHS_DEST) -cp $(CLASSES_DEST):$(BENCHS_DEST):$(LIB)/jmh-core-1.37.jar:$(LIB)/jmh-generator-annprocess-1.37.jar -sourcepath src $<
 
 clean:
 	rm -f $(SRC)/$(PACKAGE_ANALYSEURS)/*.java
