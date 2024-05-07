@@ -31,6 +31,10 @@ test lightgrep_to_rust ... bench:       2,383 ns/iter (+/- 273)
 
 The java version runs 1899 iterations per second, while the Rust version runs 419639 iterations per second. Faster-Pest is 221 times faster than JavaCC, or 22097% faster.
 
+### Further improvements
+
+I could have used faster collections types like `hashbrown` and `smallvec` rather than those provided in the standard library. I guess the same could have been done in Java.
+
 ### Conclusion
 
 This example once again shows the superiority of Rust and its ecosystem.
