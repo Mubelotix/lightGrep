@@ -4,7 +4,7 @@ This project was made by my teacher N. Delestre and completed by me. It is a sim
 
 ## Rewriting in Rust
 
-I have found javacc unsatisfactory for this task. Thus, I have decided to [rewrite it in Rust](https://github.com/Mubelotix/faster-pest/blob/master/faster-pest/examples/lightgrep/main.rs) using [Pest](https://pest.rs/) through my highly overoptimized [faster-pest](https://github.com/Mubelotix/faster-pest) crate. I have been working on this Pest alternative implementation after being unsatisfied with the performance of the original Pest crate, and have managed to make it 7 times faster.
+I have found javacc unsatisfactory for this task. Thus, I have decided to [rewrite it in Rust](https://github.com/Mubelotix/faster-pest/blob/master/faster-pest/examples/lightgrep) using [Pest](https://pest.rs/) through my highly overoptimized [faster-pest](https://github.com/Mubelotix/faster-pest) crate. I have been working on this Pest alternative implementation after being unsatisfied with the performance of the original Pest crate, and have managed to make it 7 times faster.
 
 ### User-friendliness
 
@@ -16,10 +16,10 @@ I have then benchmarked the two programs for performance on an i7-6700HQ:
 
 Java with JavaCC:
 ```
-Result "bench.BenchExpressionRationnelle.testMethod":
-  1898.902 ±(99.9%) 65.348 ops/s [Average]
-  (min, avg, max) = (1742.973, 1898.902, 2067.058), stdev = 87.238
-  CI (99.9%): [1833.554, 1964.250] (assumes normal distribution)
+Result "bench.BenchExpressionRationnelle.testMethod2":
+  53223.161 ±(99.9%) 2795.012 ops/s [Average]
+  (min, avg, max) = (40068.623, 53223.161, 57760.994), stdev = 3731.260
+  CI (99.9%): [50428.150, 56018.173] (assumes normal distribution)
 ```
 
 Rust with Faster-Pest:
@@ -29,7 +29,7 @@ test lightgrep_as_is   ... bench:         697 ns/iter (+/- 36)
 test lightgrep_to_rust ... bench:       2,383 ns/iter (+/- 273)
 ```
 
-The java version runs 1899 iterations per second, while the Rust version runs 419639 iterations per second. Faster-Pest is 221 times faster than JavaCC, or 22097% faster.
+The java version runs 53223 iterations per second, while the Rust version runs 419639 iterations per second. Faster-Pest is 788% faster than JavaCC.
 
 ### Further improvements
 
