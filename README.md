@@ -8,7 +8,7 @@ I have found javacc unsatisfactory for this task. Thus, I have decided to [rewri
 
 ### User-friendliness
 
-The first observation is that the Pest grammar file is only 21 lines long, while the javacc file is almost 200 lines. Pest can describe the same syntax while beeing 90% less verbose. Pest's syntax and errors are also much more user-friendly.
+The first observation is that the Pest grammar file is only 21 lines long, while the javacc file is almost 200 lines. Pest can describe the same syntax while being 90% less verbose. It is partly due to the fact that JavaCC requires instantiating classes right in the grammar file, while it is done separately in Rust (80 lines). I have found Pest's syntax and errors are also much more user-friendly.
 
 ### Performance
 
